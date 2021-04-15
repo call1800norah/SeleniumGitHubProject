@@ -1,16 +1,9 @@
 ﻿using NewSeleniumProject.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace NewSeleniumProject
 {
@@ -22,8 +15,11 @@ namespace NewSeleniumProject
         }
         public HomePageContactUsPageUnitTests() { }
         private HomePageContactUsPagePO homePagePO;
-        
+
         Random random = new Random();
+        /// <summary>
+        /// Method to verify homepage is loading
+        /// </summary>
         public void VerifyHomePageLoadTest()
         {
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
@@ -46,7 +42,9 @@ namespace NewSeleniumProject
             Assert.AreEqual("Sign in", homePagePO.SignIn.Text);
             Assert.IsTrue(homePagePO.ShoppingCart.Text.Contains("Cart"));
         }
-
+        /// <summary>
+        /// Test for the Contact Us link
+        /// </summary>
         [Test]
         public void ContactUsTest()
         {
@@ -64,6 +62,9 @@ namespace NewSeleniumProject
             IsEachElementDisplayed(elements);
 
         }
+        /// <summary>
+        /// Test for the subject heading dropdown in the Send Message form 
+        /// </summary>
         [Test]
         public void SendAMessageSubjectHeadingDropdownTest()
         {
@@ -79,9 +80,10 @@ namespace NewSeleniumProject
 
             homePagePO.SubjectHeadingOptionDropdown.Click();
             ElementCollectionDisplayed(homePagePO.SubjectHeadingOptions);
-
-
         }
+        /// <summary>
+        /// Test for the Email Address, Order Reference and attach file fields in the Send Message form
+        /// </summary>
         [Test]
         public void SendAMessageEmailAddressAndOrderReferenceTest()
         {
@@ -124,7 +126,6 @@ namespace NewSeleniumProject
             if (emailAddressList[randomEmailAddress].Contains("@") && emailAddressList[randomEmailAddress].Contains(".com"))
             {
                 isValidEmail = true;
-
             }
 
             var isEmailValid = isValidEmail ? true : false;
@@ -139,7 +140,6 @@ namespace NewSeleniumProject
 
                 homePagePO.FooterLinksHome.Click();
                 VerifyHomePageLoadTest();
-
             }
             else if (!isEmailValid)
             {
@@ -150,14 +150,12 @@ namespace NewSeleniumProject
             {
                 Assert.IsTrue(homePagePO.ErrorMessage.Text.Contains("The message cannot be blank."));
             }
-
-
         }
-
-       
+        /// <summary>
+        /// Method for the random choice of the Subject Heading dropdown
+        /// </summary>
         public void SubjectHeadingRandomChoice()
         {
-
             int randomChoice = random.Next(homePagePO.SubjectHeadingOptions.Count);
             homePagePO.SubjectHeadingOptions[randomChoice].Click();
             switch (randomChoice)
