@@ -1,15 +1,11 @@
-﻿using Microsoft.Graph;
-using NewSeleniumProject.PageObjects;
+﻿using NewSeleniumProject.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace NewSeleniumProject.HomePageUnitTest
 {
@@ -20,6 +16,9 @@ namespace NewSeleniumProject.HomePageUnitTest
         private readonly string lastName = "Test";
         private Random random = new Random();
 
+        /// <summary>
+        /// Validate homepage loading and fill out 'Create an Account' form in Sign In Page. 
+        /// </summary>
         [Test]
         public void CreateAnAccountTest()
         {
@@ -28,6 +27,9 @@ namespace NewSeleniumProject.HomePageUnitTest
             homePage.VerifyHomePageLoadTest();
             SignInPageCreateAnAccountForm();
         }
+        /// <summary>
+        /// Validate inside the Sign in page, 'Your Personal Information' section form is successfully loaded and filled out.
+        /// </summary>
         [Test]
         public void CreateAnAccountYourPersonalInfoTest()
         {
@@ -37,17 +39,22 @@ namespace NewSeleniumProject.HomePageUnitTest
             SignInPageCreateAnAccountForm();
             SignInPageYourPersonalInfoForm();
         }
+        /// <summary>
+        /// Validate inside the Sign in page, Your Address section is loaded and filled out successfully.
+        /// </summary>
         [Test]
         public void CreateAnAccountYourAdddressSectionTest()
         {
 
             var homePage = new HomePageContactUsPageUnitTests(driver);
-            
+
             homePage.VerifyHomePageLoadTest();
             SignInPageCreateAnAccountForm();
             SignInPageYourAddressForm();
 
-        }
+        }/// <summary>
+         /// Validate inside the Sign in page, 'Already Registered' section is loaded and filled out successfully.
+         /// </summary>
         [Test]
         public void AlreadyRegisteredSectionTest()
         {
@@ -67,8 +74,8 @@ namespace NewSeleniumProject.HomePageUnitTest
                     $"Subheading 'ALREADY REGISTERED?' was not displayed, instead {signInPage.AlreadyRegisteredSubHeading.Text} displayed.");
             }
             bool v = false;
-            Func<IWebElement, IWebElement, bool> isLableDisplayed = (e, e1) =>          
-            {               
+            Func<IWebElement, IWebElement, bool> isLableDisplayed = (e, e1) =>
+            {
                 v = (e != null && e.Displayed) && (e1 != null && e1.Displayed);
                 return v;
             };
@@ -76,7 +83,7 @@ namespace NewSeleniumProject.HomePageUnitTest
             signInPage.RegisteredEmailAddressInput.SendKeys("call1800@test.com");
             signInPage.RegisteredPasswordInput.SendKeys("12345");
             signInPage.SignInButton.Click();
-            
+
             wait.Until(e => signInPage.MyAccountHeading != null && signInPage.MyAccountHeading.Displayed);
             Assert.IsTrue(signInPage.InfoAccount.Text.Equals("Welcome to your account. Here you can manage all of your personal information and orders."),
                 $"{signInPage.InfoAccount.Text} was not displayed.");
@@ -87,6 +94,9 @@ namespace NewSeleniumProject.HomePageUnitTest
             IsEachElementDisplayed(LinkList);
 
         }
+        /// <summary>
+        /// Verify 'My Account' page loaded after successfully signed in.
+        /// </summary>
         [Test]
         public void MyAccountPageTest()
         {
@@ -102,6 +112,9 @@ namespace NewSeleniumProject.HomePageUnitTest
 
 
         }
+        /// <summary>
+        /// Method for a create an account form
+        /// </summary>
         public void SignInPageCreateAnAccountForm()
         {
             signInPage = new HomePageSignInPO(driver);
@@ -133,6 +146,9 @@ namespace NewSeleniumProject.HomePageUnitTest
             signInPage.CreateAccountButton.Click();
             Thread.Sleep(5000);
         }
+        /// <summary>
+        /// Method for Sign in page Your Personal Information form
+        /// </summary>
         public void SignInPageYourPersonalInfoForm()
         {
             signInPage = new HomePageSignInPO(driver);
@@ -205,6 +221,9 @@ namespace NewSeleniumProject.HomePageUnitTest
             signInPage.SpecialOfferCheckbox.Click();
             signInPage.SpecialOfferCheckbox.Click();
         }
+        /// <summary>
+        /// Method for Sign in page Your Address form
+        /// </summary>
         public void SignInPageYourAddressForm()
         {
             wait.Until(e => signInPage.YourAddressSubHeading != null && signInPage.YourAddressSubHeading.Displayed);
@@ -243,6 +262,6 @@ namespace NewSeleniumProject.HomePageUnitTest
             signInPage.AddressAliasInputBox.SendKeys("");
             signInPage.RegisterButton.Click();
         }
-      
+
     }
 }
