@@ -52,7 +52,7 @@ namespace NewSeleniumProject
             VerifyHomePageLoadTest();
             homePagePO.ContactUs.Click();
 
-            Assert.IsNotNull(homePagePO.ContactUsContainer, $"nameof{homePagePO.ContactUsContainer} returned as null!!");
+            Assert.IsNotNull(homePagePO.ContactUsContainer, $"{nameof(homePagePO.ContactUsContainer)} returned as null!!");
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             wait.Until(e => homePagePO.ContactUsContainer.Displayed);
@@ -74,7 +74,7 @@ namespace NewSeleniumProject
             homePagePO.ContactUs.Click();
 
             wait.Until(e => homePagePO.ContactUsContainer.Displayed);
-            Assert.IsNotNull(homePagePO.ContactUsContainer, $"nameof{homePagePO.ContactUsContainer} returned as null!!");
+            Assert.IsNotNull(homePagePO.ContactUsContainer, $"{nameof(homePagePO.ContactUsContainer)} returned as null!!");
             Assert.IsTrue(homePagePO.SendAMessageHeader.Text.Equals("SEND A MESSAGE"), $"Expected a label 'SEND A MESSAGE' but returned {homePagePO.SendAMessageHeader.Text.Trim()}");
             Assert.IsTrue(homePagePO.SubjectHeading.Text.Equals("Subject Heading"), $"{homePagePO.SubjectHeading.Text} was not displayed.");
 
@@ -93,7 +93,7 @@ namespace NewSeleniumProject
             homePagePO.ContactUs.Click();
 
             wait.Until(e => homePagePO.ContactUsContainer.Displayed);
-            Assert.IsNotNull(homePagePO.ContactUsContainer, $"nameof{homePagePO.ContactUsContainer} returned as null!!");
+            Assert.IsNotNull(homePagePO.ContactUsContainer, $"{nameof(homePagePO.ContactUsContainer)} returned as null!!");
             Assert.IsTrue(homePagePO.SendAMessageHeader.Text.Equals("SEND A MESSAGE"), $"Expected a label 'SEND A MESSAGE' but returned {homePagePO.SendAMessageHeader.Text}");
 
             SubjectHeadingRandomChoice();

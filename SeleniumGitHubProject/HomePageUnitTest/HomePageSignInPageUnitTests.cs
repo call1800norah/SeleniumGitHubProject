@@ -66,7 +66,7 @@ namespace NewSeleniumProject.HomePageUnitTest
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             wait.Until(e => signInPage.SignInPageContainer.Displayed);
-            Assert.IsNotNull(signInPage.SignInPageContainer, $"nameof{signInPage.SignInPageContainer} returned as null");
+            Assert.IsNotNull(signInPage.SignInPageContainer, $"{nameof(signInPage.SignInPageContainer)} returned as null");
 
             if (signInPage.AlreadyRegisteredSubHeading != null && signInPage.AlreadyRegisteredSubHeading.Displayed)
             {
@@ -108,7 +108,7 @@ namespace NewSeleniumProject.HomePageUnitTest
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             wait.Until(e => signInPage.SignInPageContainer.Displayed);
-            Assert.IsNotNull(signInPage.SignInPageContainer, $"nameof{signInPage.SignInPageContainer} returned as null");
+            Assert.IsNotNull(signInPage.SignInPageContainer, $"{nameof(signInPage.SignInPageContainer)} returned as null");
 
 
         }
@@ -122,7 +122,7 @@ namespace NewSeleniumProject.HomePageUnitTest
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             wait.Until(e => signInPage.SignInPageContainer.Displayed);
-            Assert.IsNotNull(signInPage.SignInPageContainer, $"nameof{signInPage.SignInPageContainer} returned as null");
+            Assert.IsNotNull(signInPage.SignInPageContainer, $"{nameof(signInPage.SignInPageContainer)} returned as null");
 
             List<IWebElement> validateSignInPage = new List<IWebElement>() { signInPage.SignInPageHeading,
                 signInPage.HomeIcon, signInPage.NavigationPage, signInPage.CreateAccountForm,
@@ -155,8 +155,8 @@ namespace NewSeleniumProject.HomePageUnitTest
 
             Func<IWebElement, bool> accountFormDisplayed = e => e != null && e.Displayed;
             accountFormDisplayed(signInPage.AccountCreationForm);
-            Assert.IsTrue(signInPage.AccountCreationForm.Displayed, $"nameof{signInPage.AccountCreationForm} was not displayed.");
-            Assert.IsNotNull(signInPage.AccountCreationForm, $"nameof{signInPage.AccountCreationForm} returned as Null!");
+            Assert.IsTrue(signInPage.AccountCreationForm.Displayed, $"{nameof(signInPage.AccountCreationForm)} was not displayed.");
+            Assert.IsNotNull(signInPage.AccountCreationForm, $"{nameof(signInPage.AccountCreationForm)} returned as Null!");
 
             List<IWebElement> createAccountFormElements = new List<IWebElement>() { signInPage.TitleLabel,
                 signInPage.MrLabel, signInPage.MrsLabel, signInPage.FirstnameLabel, signInPage.LastnameLabel,
@@ -168,7 +168,7 @@ namespace NewSeleniumProject.HomePageUnitTest
             string validPassword = "12345";
             string invalidPassword = "1234";
             signInPage.PasswordInput.SendKeys(invalidPassword);
-            Assert.IsTrue(signInPage.PasswordFormInfo.Text.Equals("(Five characters minimum)"), $"nameof{signInPage.PasswordFormInfo} was not displayed.");
+            Assert.IsTrue(signInPage.PasswordFormInfo.Text.Equals("(Five characters minimum)"), $"{nameof(signInPage.PasswordFormInfo)} was not displayed.");
             signInPage.PasswordInput.Clear();
             signInPage.PasswordInput.SendKeys(validPassword);
 
@@ -209,14 +209,14 @@ namespace NewSeleniumProject.HomePageUnitTest
             signInPage.YearsSelector.SendKeys(optionYear[randomYears]);
 
             Assert.IsTrue(signInPage.NewsLetterLabel.Text.Equals("Sign up for our newsletter!"),
-                $"nameof{signInPage.NewsLetterLabel}failed to return 'Sign up for our newsletter!', instead " +
+                $"{nameof(signInPage.NewsLetterLabel)}failed to return 'Sign up for our newsletter!', instead " +
                 $"returned {signInPage.NewsLetterLabel}");
             signInPage.NewsLetterCheckbox.Click();
             signInPage.NewsLetterCheckbox.Click();
 
 
             Assert.IsTrue(signInPage.SpecialOfferLabel.Text.Equals("Receive special offers from our partners!"),
-                $"nameof{signInPage.SpecialOfferLabel}failed to return 'Receive special offers from our partners!', instead " +
+                $"{nameof(signInPage.SpecialOfferLabel)}failed to return 'Receive special offers from our partners!', instead " +
                 $"returned {signInPage.SpecialOfferLabel}");
             signInPage.SpecialOfferCheckbox.Click();
             signInPage.SpecialOfferCheckbox.Click();
